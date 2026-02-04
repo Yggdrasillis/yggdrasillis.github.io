@@ -50,7 +50,7 @@ pupil_color = (0, 0, 0)  # Black
 highlight_color = (180, 220, 250)  # Light highlight
 
 # Plesiosaur position (moved left, wider and flatter)
-base_x = width // 2 - 550
+base_x = width // 2 - 650
 base_y = height // 2 + 20
 
 # Draw body (main torso) with outline - wider and flatter, more streamlined
@@ -205,63 +205,96 @@ small_spots = [
 for spot in small_spots:
     draw_pixel_ellipse(spot[0], spot[1], spot[2], spot[3], spot_color)
 
-# Draw two little people riding on the plesiosaur's back
-# Person colors
-skin_color = (255, 220, 180)
-hair_color_1 = (100, 60, 40)  # Brown hair
-hair_color_2 = (40, 40, 40)   # Dark hair
-shirt_color_1 = (220, 80, 80)  # Red shirt
-shirt_color_2 = (80, 120, 220) # Blue shirt
-pants_color_1 = (60, 80, 120)  # Blue pants
-pants_color_2 = (80, 100, 60)  # Green pants
+# Draw a cute little pig riding on the plesiosaur's back
+# Pig colors
+pig_body_color = (255, 180, 200)  # Pink
+pig_dark_color = (230, 140, 170)  # Dark pink
+pig_light_color = (255, 220, 235)  # Light pink
+pig_snout_color = (240, 160, 190)  # Snout pink
+pig_outline = (200, 100, 140)  # Pink outline
 
-# Person 1 - sitting on front part of body
-person1_x = body_x + 120
-person1_y = body_y - 15
+# Pig position - sitting in the middle of the plesiosaur's back
+pig_x = body_x + 160
+pig_y = body_y - 80
 
-# Person 1 - legs
-draw_pixel_rect(person1_x + 8, person1_y + 30, 12, 24, pants_color_1)
-draw_pixel_rect(person1_x + 22, person1_y + 30, 12, 24, pants_color_1)
-# Person 1 - body/shirt
-draw_pixel_rect(person1_x + 6, person1_y + 12, 30, 20, shirt_color_1)
-# Person 1 - arms
-draw_pixel_rect(person1_x, person1_y + 14, 8, 18, skin_color)
-draw_pixel_rect(person1_x + 34, person1_y + 14, 8, 18, skin_color)
-# Person 1 - head
-draw_pixel_ellipse(person1_x + 10, person1_y, 22, 22, skin_color)
-# Person 1 - hair
-draw_pixel_ellipse(person1_x + 8, person1_y - 6, 26, 14, hair_color_1)
-# Person 1 - eyes
-draw_pixel_rect(person1_x + 14, person1_y + 8, 4, 4, (0, 0, 0))
-draw_pixel_rect(person1_x + 22, person1_y + 8, 4, 4, (0, 0, 0))
-# Person 1 - smile
-draw_pixel_rect(person1_x + 14, person1_y + 15, 12, pixel_size, (0, 0, 0))
-# Person 1 - outline
-draw_pixel_outline(person1_x + 6, person1_y + 12, 30, 20, outline_color, pixel_size)
+# Pig body (rounded, chubby body) - even larger size
+body_w, body_h = 120, 100
+draw_pixel_ellipse(pig_x - pixel_size, pig_y + 40 - pixel_size, body_w + pixel_size*2, body_h + pixel_size*2, pig_outline)
+draw_pixel_ellipse(pig_x, pig_y + 40, body_w, body_h, pig_body_color)
+# Body highlight
+draw_pixel_ellipse(pig_x + 16, pig_y + 48, 70, 56, pig_light_color)
 
-# Person 2 - sitting on back part of body
-person2_x = body_x + 280
-person2_y = body_y - 12
+# Pig head (large, round head) - even larger size
+head_w, head_h = 96, 88
+draw_pixel_ellipse(pig_x + 12 - pixel_size, pig_y - pixel_size, head_w + pixel_size*2, head_h + pixel_size*2, pig_outline)
+draw_pixel_ellipse(pig_x + 12, pig_y, head_w, head_h, pig_body_color)
+# Head highlight
+draw_pixel_ellipse(pig_x + 24, pig_y + 8, 60, 52, pig_light_color)
 
-# Person 2 - legs
-draw_pixel_rect(person2_x + 8, person2_y + 30, 12, 24, pants_color_2)
-draw_pixel_rect(person2_x + 22, person2_y + 30, 12, 24, pants_color_2)
-# Person 2 - body/shirt
-draw_pixel_rect(person2_x + 6, person2_y + 12, 30, 20, shirt_color_2)
-# Person 2 - arms (waving)
-draw_pixel_rect(person2_x, person2_y + 14, 8, 18, skin_color)
-draw_pixel_rect(person2_x + 34, person2_y + 4, 8, 18, skin_color)  # Right arm raised
-# Person 2 - head
-draw_pixel_ellipse(person2_x + 10, person2_y, 22, 22, skin_color)
-# Person 2 - hair
-draw_pixel_ellipse(person2_x + 8, person2_y - 6, 26, 14, hair_color_2)
-# Person 2 - eyes
-draw_pixel_rect(person2_x + 14, person2_y + 8, 4, 4, (0, 0, 0))
-draw_pixel_rect(person2_x + 22, person2_y + 8, 4, 4, (0, 0, 0))
-# Person 2 - smile
-draw_pixel_rect(person2_x + 14, person2_y + 15, 12, pixel_size, (0, 0, 0))
-# Person 2 - outline
-draw_pixel_outline(person2_x + 6, person2_y + 12, 30, 20, outline_color, pixel_size)
+# Pig snout (distinctive pig nose) - much larger and more prominent
+snout_x, snout_y = pig_x + 28, pig_y + 44
+draw_pixel_ellipse(snout_x - pixel_size, snout_y - pixel_size, 52 + pixel_size*2, 36 + pixel_size*2, pig_outline)
+draw_pixel_ellipse(snout_x, snout_y, 52, 36, pig_snout_color)
+# Add inner snout detail for more depth
+draw_pixel_ellipse(snout_x + 4, snout_y + 3, 44, 28, (250, 170, 195))
+# Nostrils - much larger and more visible
+draw_pixel_ellipse(snout_x + 12, snout_y + 12, pixel_size*3, pixel_size*4, pig_outline)
+draw_pixel_ellipse(snout_x + 28, snout_y + 12, pixel_size*3, pixel_size*4, pig_outline)
+
+# Pig ears (triangular, floppy ears) - larger size
+# Left ear
+ear_left_x, ear_left_y = pig_x + 16, pig_y - 16
+draw_pixel_ellipse(ear_left_x - pixel_size, ear_left_y - pixel_size, 32 + pixel_size*2, 40 + pixel_size*2, pig_outline)
+draw_pixel_ellipse(ear_left_x, ear_left_y, 32, 40, pig_body_color)
+draw_pixel_ellipse(ear_left_x + 4, ear_left_y + 4, 20, 24, pig_dark_color)
+
+# Right ear
+ear_right_x, ear_right_y = pig_x + 64, pig_y - 16
+draw_pixel_ellipse(ear_right_x - pixel_size, ear_right_y - pixel_size, 32 + pixel_size*2, 40 + pixel_size*2, pig_outline)
+draw_pixel_ellipse(ear_right_x, ear_right_y, 32, 40, pig_body_color)
+draw_pixel_ellipse(ear_right_x + 8, ear_right_y + 4, 20, 24, pig_dark_color)
+
+# Pig eyes (cute eyes) - larger size
+eye_left_x, eye_left_y = pig_x + 32, pig_y + 24
+draw_pixel_rect(eye_left_x, eye_left_y, 12, 12, (0, 0, 0))
+draw_pixel_rect(eye_left_x + 3, eye_left_y + 3, 4, 4, (255, 255, 255))  # Eye shine
+
+eye_right_x, eye_right_y = pig_x + 64, pig_y + 24
+draw_pixel_rect(eye_right_x, eye_right_y, 12, 12, (0, 0, 0))
+draw_pixel_rect(eye_right_x + 3, eye_right_y + 3, 4, 4, (255, 255, 255))  # Eye shine
+
+# Pig legs (short, stubby legs) - larger size
+# Front left leg
+leg_fl_x, leg_fl_y = pig_x + 24, pig_y + 120
+draw_pixel_rect(leg_fl_x - pixel_size, leg_fl_y - pixel_size, 28 + pixel_size*2, 40 + pixel_size*2, pig_outline)
+draw_pixel_rect(leg_fl_x, leg_fl_y, 28, 40, pig_body_color)
+
+# Front right leg
+leg_fr_x, leg_fr_y = pig_x + 64, pig_y + 120
+draw_pixel_rect(leg_fr_x - pixel_size, leg_fr_y - pixel_size, 28 + pixel_size*2, 40 + pixel_size*2, pig_outline)
+draw_pixel_rect(leg_fr_x, leg_fr_y, 28, 40, pig_body_color)
+
+# Back legs (partially visible behind body)
+# Back left leg
+leg_bl_x, leg_bl_y = pig_x + 20, pig_y + 128
+draw_pixel_rect(leg_bl_x, leg_bl_y, 20, 28, pig_dark_color)
+
+# Back right leg
+leg_br_x, leg_br_y = pig_x + 76, pig_y + 128
+draw_pixel_rect(leg_br_x, leg_br_y, 20, 28, pig_dark_color)
+
+# Pig tail (curly tail) - larger size
+tail_x, tail_y = pig_x + 108, pig_y + 72
+# Tail segments forming a curl
+tail_segments = [
+    (tail_x, tail_y, 16, 24),
+    (tail_x + 12, tail_y - 8, 16, 24),
+    (tail_x + 20, tail_y - 20, 16, 20),
+    (tail_x + 24, tail_y - 32, 12, 16),
+]
+for seg in tail_segments:
+    draw_pixel_ellipse(seg[0], seg[1], seg[2], seg[3], pig_body_color)
+    draw_pixel_outline(seg[0], seg[1], seg[2], seg[3], pig_outline, pixel_size)
 
 # Ensure pure white background by filling any gaps
 # (The background is already white from initialization, this is just to be sure)
