@@ -9,7 +9,7 @@ xinzhouzheng22@gmail.com
 #### Education  
 **University of Science and Technology of China (USTC)** | Sept 2023 - Jul 2027 (Expected)  
 B.E. in Computer Science and Technology  
-GPA: 4.02/4.3, Ranking: 3/236
+GPA: 4.03/4.3, Ranking: 3/236
 
 #### Research Interests  
 MLSys, AI Infra, AI security
